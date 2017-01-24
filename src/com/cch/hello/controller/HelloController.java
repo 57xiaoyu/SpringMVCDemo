@@ -2,8 +2,8 @@ package com.cch.hello.controller;
 
 import com.cch.hello.bean.UserInfo;
 import com.cch.hello.dao.UserDao;
-import com.cch.hello.util.JsonUtil;
 import com.qiniu.util.Auth;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -25,7 +23,9 @@ public class HelloController {
 
     private static final String ACCESS_KEY = "SM5eEN1dWJpA1x-7VZwgB8JguPjl4xDKMSb2-ekq";
     private static final String SECRET_KEY = "xZu6Le2UFS1VvWEeirs6Q-3fOqCTaV2cCYfgNVc3";
-    private UserDao dao;
+
+    @Autowired
+    private UserDao userDao;
 
     @ResponseBody
     @RequestMapping(value = "/get_token", method = RequestMethod.GET)
@@ -58,14 +58,11 @@ public class HelloController {
     public String get(HttpServletRequest request, HttpServletResponse response) {
         String user_id = request.getParameter("user_id");
        // System.out.println(request.getParameter("a"));
-        UserInfo user = dao.findUser(user_id);
+        UserInfo user = userDao.findUser(user_id);
         if(user!=null){
             return "user_id:"+user_id+"   user_name:"+user.user_name;
         }
 
         return "can't find user";
-    }
-    public void setDao(UserDao dao) {
-        this.dao = dao;
     }
 }

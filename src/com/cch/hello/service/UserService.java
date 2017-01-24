@@ -4,7 +4,7 @@ import com.cch.hello.bean.UserInfo;
 import com.cch.hello.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.mysql.jdbc.Driver;
 /**
  * Created by Fstar on 2017/1/24.
  */
@@ -15,5 +15,6 @@ public class UserService {
 
     public UserInfo findUser(String user_id){
                return userDao.findUser(user_id);
+
     }
 }

@@ -1,0 +1,5 @@
+<root>
+    <item name='org.springframework.jdbc.core.support.JdbcDaoSupport org.springframework.jdbc.core.JdbcTemplate getJdbcTemplate()'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>
